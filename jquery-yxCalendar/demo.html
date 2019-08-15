@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="yexuanCal.css">
+	<style type="text/css">
+	.my-box{
+		position: relative;
+		margin-top: 20px;
+		background-color: #fff;
+		-ms-box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+		-moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+		-webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+		box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+	}
+	.my-open .title{
+		padding: 8px 10px;
+		margin: 0;
+	}
+	.my-open .title i{
+		float: left;
+		width: 26px;
+		height: 26px;
+		background: url('images/all-icon.png') no-repeat 0px -296px;
+	}
+	.my-open .title h2{
+		float: left;
+		line-height: 26px;
+		margin: 0;
+		font-size: 14px;
+		font-weight: 700;
+	}
+	.my-open #goToday{
+		float: left;
+		margin-left: 15px;
+		height: 26px;
+		line-height: 26px;
+		cursor: pointer;
+		font-weight: 700;
+	}
+	.my-open #goToday:hover{
+		color: #579ff4;
+	}
+	.my-open .title .control{
+		float: right;
+		line-height: 26px;
+	}
+	.my-open .title .control>span{
+		width: 100px;
+		padding: 0 5px;
+		display: inline-block;
+		text-align: center;
+	}
+	.my-open .title .control>a:hover{
+		color: #579ff4;
+		text-decoration: none;
+	}
+	.my-open #showTime{
+		font-size: 14px;
+	}
+	</style>
+</head>
+<body>
+
+	<div style="width: 35%;min-width:240px;margin: 15px auto;">
+		<div class="my-box my-open">
+			<div class="title clearfix">
+				<i></i>
+				<h2>Demo</h2>
+				<span id="goToday">今天</span>
+				<div class="control">
+					<a href="#" id="prevMonth"><<上个月</a>
+					<span id="showTime"></span><a href="#" id="nextMonth">下个月>></a>
+				</div>
+			</div>					
+			<div class="calendar" id="myCal">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="jquery-2.2.1.min.js"></script>
+	<script type="text/javascript" src="jquery-yxCalendar.dev.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#myCal').yxCalendar({
+				viewDate : new Date(),
+				onClickDate : function(date,e){
+					alert(date);
+				}
+			});
+			showTime();
+			$("#prevMonth").click(function(e){
+				e.preventDefault();
+				$('#myCal').yxCalendar('goPrevMonth');
+				showTime();
+			});
+			$("#nextMonth").click(function(e){
+				e.preventDefault();
+				$('#myCal').yxCalendar('goNextMonth');
+				showTime();
+			});
+			$("#goToday").click(function(e){
+				e.preventDefault();
+				$('#myCal').yxCalendar('goToday');
+				showTime();
+			});
+			function showTime(){
+				var date = new Date($('#myCal').find('.calBody').attr('data-date'));
+				var year = date.getFullYear();
+				var month = date.getMonth() + 1;
+				$("#showTime").text(year + "年" + month + "月");
+			}
+		});
+		
+	</script>
+</body>
+</html>

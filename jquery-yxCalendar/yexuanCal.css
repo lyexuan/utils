@@ -1,0 +1,67 @@
+*{
+	box-sizing: border-box;
+}
+ul.calHeader,ul.calBody{
+	width: 100%;
+	list-style: none;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+ul.calBody{
+	padding: 10px 0;
+}
+ul.calHeader> li,ul.calBody> li{
+	float: left;
+	width: 14.28571428%;/*14.28571428%*/
+	text-align: center;
+	color: #4e4e4e;
+	height: 40px;
+	line-height: 40px;
+}
+
+ul.calHeader > li.week{
+	background-color: #2a7ee2;
+	color: #fff;
+}
+
+ul.calBody > li.current{
+	cursor: default;
+}
+
+ul.calBody > li>div{
+	padding: 5px;
+}
+ul.calBody > li em,ul.calBody > li b{
+	display: block;
+	font-style: normal;
+	font-weight: 300;
+}
+ul.calBody .date{
+	color: #000;
+	font-size: 12px;
+	border-radius: 50%;
+}
+ul.calBody > li em{
+	font-size: 14px;
+}
+ul.calBody .weekend{
+	color: #c00;
+}
+ul.calBody .date:hover,
+ul.calBody .date.active{
+	background-color: #F47C7C;
+	color: #fff;
+}
+ul.calBody .today{
+	background: url("images/today.png") center no-repeat;
+	background-size: cover;
+}
+
+ul.calBody .disabled:hover{
+	background-color: transparent;
+}
+ul.calBody .disabled,
+ul.calBody .disabled:hover{
+	color: #c3c1c1;
+}
