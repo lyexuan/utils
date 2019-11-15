@@ -80,16 +80,36 @@
 	});*/
 	var overlays = [];
 	var points = [];
+    var multiPoint = [];
 	var overlaycomplete = function(e){
         overlays.push(e.overlay);
 
         /*var lo = overlays[0].lo;*/
-        var lo = overlays;
-        points = [];
-        for(var i=0,len=lo.length;i<len;i++){
-        	points.push("!@" + lo[i].point.lng + "," + lo[i].point.lat + "!*");
+        console.log(e.overlay.to);
+        var multiList = e.overlay.to;
+        if(multiList && Array.isArray(multiList)){
+            multiPoint = [];
+            for(var i=0,len=multiList.length;i<len;i++){
+
+                    multiPoint.push([multiList[i].lng, multiList[i].lat]);
+
+                
+            }
+            console.log(JSON.stringify(multiPoint));
         }
-        console.log(points);
+
+        var lo = overlays;
+        if(lo && Array.isArray(lo)){
+            points = [];
+            for(var i=0,len=lo.length;i<len;i++){
+                if(lo[i].point){
+                    points.push("!@" + lo[i].point.lng + "," + lo[i].point.lat + "!*");
+                }
+                
+            }
+            console.log(points);
+        }
+        
     };
     var styleOptions = {
         strokeColor:"red",    //边线颜色。
